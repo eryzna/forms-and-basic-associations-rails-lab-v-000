@@ -19,7 +19,7 @@ class Song < ActiveRecord::Base
 
   def genre_name
     self.try(:genre).try(:name)
-  end  
+  end
 
   def note_contents=(contents)
     contents.each do |content|
