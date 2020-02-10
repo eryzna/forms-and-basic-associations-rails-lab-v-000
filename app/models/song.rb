@@ -19,5 +19,18 @@ class Song < ActiveRecord::Base
 
   def genre_name
     self.try(:genre).try(:name)
-  end    
+  end  
+
+  def note_contents=(contents)
+    contents.each do |content|
+      if !content.empty?
+          note = Note.create(content: content, song_id: self.id)
+          self.notes << note
+      end
+    end
+  end
+
+  def note_contents
+    self.notes.map { |note| note.content }
+  end  
 end
